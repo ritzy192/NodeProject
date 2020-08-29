@@ -1,5 +1,7 @@
-const fs = require('fs');
+const add  = require('./utils.js')
+const notes = require('./notes')
 
-//fs.writeFileSync('notes.txt','Created by rythem through node.js.');
-
-fs.appendFileSync('notes.txt',' Appended string');
+const sum = add(4,4)
+const note = notes()
+console.log(note)
+console.log(sum)
