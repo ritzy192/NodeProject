@@ -32,6 +32,7 @@ const removeNote = (title) => {
         console.log(chalk.inverse.green('Note removed'))
 }
 
+//to list all notes
 const listNotes = () => {
     const notes = loadNotes()
     console.log(chalk.green('Your Notes'))
