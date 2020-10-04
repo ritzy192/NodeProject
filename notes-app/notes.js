@@ -5,9 +5,11 @@ const getNotes = () => 'Your Notes...'
 
 const addNote = (title, body) => {
     const notes = loadNotes()
+    //Filter will not stop at first match and will search through complete array
     const duplicate = notes.filter( (note) =>  note.title === title)
-
-    if(duplicate.length === 0)
+    //Add will stop at first match and will return true if value found
+    const duplicateNote = notes.find( (note) =>  note.title === title)
+    if(!duplicateNote)
     {
         notes.push({
             title: title,
@@ -39,6 +41,18 @@ const listNotes = () => {
     notes.forEach(note => console.log(chalk.green(note.title)));
 }
 
+const readNote = (title) => {
+    const notes = loadNotes()
+    const note = notes.find( (note) => note.title === title )
+    if(note)
+    {
+        console.log(chalk.inverse(note.title))
+        console.log(note.body)
+    }
+    else
+        console.log(chalk.red.inverse('No note with same title found!'))
+}
+
 const savedNotes = (notes) => {
     const dataJson = JSON.stringify(notes)
     fs.writeFileSync('notes.json', dataJson)
@@ -60,5 +74,6 @@ module.exports = {
     getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
-    listNotes: listNotes
+    listNotes: listNotes,
+    readNote: readNote
 }
