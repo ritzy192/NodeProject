@@ -31,7 +31,7 @@ const removeNote = function (title) {
     const notesToKeep = notes.filter(function(note) {
         //console.log(note.title + '\n')
         //console.log(title)
-        return note.title != title 
+        return note.title !== title 
     })
     savedNotes(notesToKeep)
     if(notes.length === notesToKeep.length)
