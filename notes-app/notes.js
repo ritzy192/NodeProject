@@ -4,7 +4,8 @@ const chalk = require('chalk')
 const addNote = (title, body) => {
     const notes = loadNotes()
     //Filter will not stop at first match and will search through complete array
-    const duplicate = notes.filter( (note) =>  note.title === title)
+    //const duplicate = notes.filter( (note) =>  note.title === title)
+    
     //Add will stop at first match and will return true if value found
     const duplicateNote = notes.find( (note) =>  note.title === title)
     if(!duplicateNote)
