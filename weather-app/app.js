@@ -1,10 +1,8 @@
-console.log('starting')
+const request = require('request')
 
-setTimeout(() => {
-    console.log('2 sec')
-}, 2000)
+const url = 'http://api.weatherstack.com/current?access_key=3b01490a702d8d41d46cba938459868c&query=Dehradun'
 
-setTimeout(() => {
-    console.log('1 sec')
-}, 0)
-console.log('stoping'); 
+request( {url: url }, (error, response) => {
+    const data = JSON.parse(response.body)
+    console.log(data.current)
+})
