@@ -1,0 +1,1 @@
+Callback Function: It is a function provided as an argument to another function, with the intention of having it called later on.
