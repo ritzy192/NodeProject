@@ -10,7 +10,7 @@ console.log(add(2))
 
 //Note: Arrow function do not bind to their own 'this' value.
 const event = {
-    name: 'Birthday Party',
+    name: 'Birthday Party to You',
     guestList: ['aman', 'raman', 'karan', 'suman'],
     //this is ES6 method defination syntax
     printGuestList() {   
