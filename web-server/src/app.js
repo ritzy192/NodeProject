@@ -2,19 +2,28 @@ const express = require('express')
 const app = express();
 
 app.get('', (req, res) => {
-    res.send('Hello Express!')
+    res.send('<h1>Hello Express!</h1>')
 })
 
 app.get('/about', (req, res) => {
-    res.send('About Page')
+    res.send([{
+        name: 'Rythem',
+        age: 25
+    }, {
+        name: 'Vatsala',
+        age: 35
+    }])
 })
 
 app.get('/help', (req, res) => {
-    res.send('Help Page')
+    res.send('<h2>Help Page</h2>')
 })
 
 app.get('/weather', (req, res) => {
-    res.send('Today\'s Weather')
+    res.send({
+        location: 'Delhi',
+        forcast: 50
+    })
 })
 
 app.listen(3000, ()=>{
