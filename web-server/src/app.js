@@ -2,22 +2,26 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-console.log(__dirname);
-console.log(path.join(__dirname, '../public/about.html'));
+const pathTemplate = path.join(__dirname, '../templates');
 
+//setup handlebar engine and views location
+app.set('views', pathTemplate);
 app.set('view engine', 'hbs');
+
+//setup static directory to serve
 app.use(express.static(path.join(__dirname, '../public')));
 
+//application routes
 app.get('', (req, res) => {
   res.render('index', {
-    title: 'hbs title new title new new',
+    title: 'hbs title',
     name: 'rythem',
   });
 });
 
 app.get('/about', (req, res) => {
   res.render('about', {
-    title: 'about title new',
+    title: 'About',
     name: 'rythem',
   });
 });
