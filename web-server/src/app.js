@@ -36,11 +36,26 @@ app.get('/help', (req, res) => {
     msg: 'Help text',
   });
 });
+app.get('/help/*', (req, res) => {
+  res.render('404', {
+    title: '404',
+    name: 'Rythem Datta',
+    notFoundMessage: 'Help article not found',
+  });
+});
 
 app.get('/weather', (req, res) => {
   res.send({
     location: 'Delhi',
     forcast: 50,
+  });
+});
+
+app.get('*', (req, res) => {
+  res.render('404', {
+    title: '404',
+    name: 'Rythem Datta',
+    notFoundMessage: 'Page not Found',
   });
 });
 
