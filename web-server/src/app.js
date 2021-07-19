@@ -2,6 +2,8 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const hbs = require('hbs');
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
 const pathTemplate = path.join(__dirname, '../templates/views');
 const pathPartials = path.join(__dirname, '../templates/partials');
@@ -45,15 +47,34 @@ app.get('/help/*', (req, res) => {
 });
 
 app.get('/weather', (req, res) => {
-  if (!req.query.address) {
+  var address = req.query.address;
+  if (!address) {
     return res.send({
       error: 'Please provide a address',
     });
+  } else {
+    geocode(address, (error, { latitude, longitude, location } = {}) => {
+      if (error) {
+        return res.send({
+          error,
+        });
+      }
+      forecast(latitude, longitude, (error, forecasrData) => {
+        if (error) {
+          return res.send({
+            error,
+          });
+        }
+        console.log(location);
+        console.log(forecasrData);
+        res.send({
+          address,
+          location,
+          forcast: forecasrData,
+        });
+      });
+    });
   }
-  res.send({
-    forcast: 50,
-    location: req.query.address,
-  });
 });
 
 app.get('/products', (req, res) => {
